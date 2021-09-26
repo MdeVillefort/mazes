@@ -7,6 +7,25 @@
   </head>
   <body>
     <canvas id="canvas" width="800" height="800"></canvas>
+    <br>
+    <div id="ui">
+      <h4>Maze Generation & Path Finding</h4>
+      <p><u>Generate Maze:</u></p>
+      <label for="maze-size">Maze Size:</label>
+      <select id="maze-size">
+        <option value="10">10 x 10</option>
+        <option value="20" selected>20 x 20</option>
+        <option value="40">40 x 40</option>
+      </select>
+      <button id="create-maze">Create</button>
+      <button id="play-pause-maze" disabled>&#x23EF</button>
+      <button id="reset-maze" disabled>Reset</button>
+      <p><u>Solve Maze:</u></p>
+      <label for="path-finder">Path Finder:</label>
+      <select id="path-finder">
+      </select>
+      <button id="solve-maze">Solve</button>
+    </div>
     <script src="main.js" type="module"></script>
   </body>
 </html>

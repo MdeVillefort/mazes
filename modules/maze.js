@@ -142,7 +142,7 @@ class Maze {
           this.nodes[offset(0, 0)] |= CELL_PATH_W;
           this.nodes[offset(-1, 0)] |= CELL_PATH_E;
           this.stack.push([this.stack.at(-1)[0] - 1, this.stack.at(-1)[1] + 0]);
-          break
+          break;
       }
 
       // Indicate that current node has been visited
@@ -174,13 +174,9 @@ class Maze {
     this.ctx.stroke();
   }
 
-  animateMaze() {
-    this.drawMaze();
-    this.updateMaze();
-    if (this.nVisited < this.gridX * this.gridY) {
-      requestAnimationFrame(this.animateMaze.bind(this));
-    } else {
-      this.drawMaze();
+  solveMaze() {
+    while (this.nVisited < this.gridX * this.gridY) {
+      this.updateMaze();
     }
   }
 }
