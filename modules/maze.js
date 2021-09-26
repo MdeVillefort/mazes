@@ -174,7 +174,7 @@ class Maze {
     this.ctx.stroke();
   }
 
-  solveMaze() {
+  createMaze() {
     while (this.nVisited < this.gridX * this.gridY) {
       this.updateMaze();
     }
