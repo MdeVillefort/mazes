@@ -1,5 +1,6 @@
-# Maze Generator & Path Finding
-An exploration of maze generation in the browser using the canvas api.
+# Maze Generation & Path Finding
+An exploration of maze generation and path finding in the browser using
+the canvas api.
 
 ## Maze Generation
 Uses stack-based recursive backtracking algorithm to create mazes.

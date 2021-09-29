@@ -14,8 +14,8 @@ class Maze {
       'CELL_PATH_S' : 0x04,   // 00100
       'CELL_PATH_W' : 0x08,   // 01000
       'CELL_VISITED' : 0x10   // 10000
-    }
-    Object.freeze(this.states)
+    };
+    Object.freeze(this.states);
 
     this.initMaze();
   }
@@ -25,7 +25,7 @@ class Maze {
     this.nodes = [];
     this.stack = [];
     for (let i = 0; i < this.gridX * this.gridY; i++) {
-      this.nodes.push(0x00);
+      this.nodes.push(0x00);  // row oriented
     }
     this.stack[0] = [0, 0];
     this.nodes[0] = this.states.CELL_VISITED;
