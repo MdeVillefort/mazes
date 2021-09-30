@@ -6,8 +6,9 @@
     <link href="style.css" rel="stylesheet" />
   </head>
   <body>
-    <canvas id="canvas" width="800" height="800"></canvas>
-    <br>
+    <div class="maze">
+      <canvas id="canvas" width="800" height="800"></canvas>
+    </div>
     <div id="ui">
       <h4>Maze Generation & Path Finding</h4>
       <p><u>Generate Maze:</u></p>
@@ -26,13 +27,11 @@
       <p><u>Solve Maze:</u></p>
       <label for="path-finder">Path Finder:</label>
       <select id="path-finder">
-        <option value="random">1</option>
+        <option value="auto">auto</option>
         <option value="manual">manual</option>
       </select>
-      <label for="animate-path">Animate?</label>
-      <input type="checkbox" id="animate-path" />
       <br>
-      <button id="solve-maze">Solve</button>
+      <button id="solve-maze" disabled>Solve</button>
     </div>
     <script src="main.js" type="module"></script>
   </body>

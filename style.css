@@ -1,5 +1,12 @@
-canvas {
-    border : 3px solid black;
+.maze {
+    position : relative;
+    z-index : 1;
+}
+
+.draggable {
+    position : absolute;
+    cursor : move;
+    z-index : 2;
 }
 
 #ui {

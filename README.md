@@ -27,3 +27,5 @@ TODO
 https://www.youtube.com/watch?v=Y37-gB83HKE
 
 https://en.wikipedia.org/wiki/Maze_generation_algorithm
+
+Eloquent Javascript by Marijn Haverbeke

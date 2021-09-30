@@ -2,12 +2,18 @@ class Maze {
   constructor(canvas, ctx, gridX, gridY) {
     this.canvas = canvas;
     this.ctx = ctx;
-    this.ctx.strokeStyle = 'rgb(0, 0, 0)';
-    this.ctx.lineWidth = 3;
     this.gridX = gridX;
     this.gridY = gridY;
     this.nodeX = Math.floor(this.canvas.width / this.gridX);
     this.nodeY = Math.floor(this.canvas.height / this.gridY);
+    this.pixelX = [];
+    this.pixelY = [];
+    for (let col = 0; col < this.gridX; col++) {
+      this.pixelX.push(col * this.nodeX);
+    }
+    for (let row = 0; row < this.gridY; row++) {
+      this.pixelY.push(row * this.nodeY);
+    }
     this.states = {
       'CELL_PATH_N' : 0x01,   // 00001
       'CELL_PATH_E' : 0x02,   // 00010
@@ -40,6 +46,9 @@ class Maze {
         CELL_PATH_S,
         CELL_PATH_W,
         CELL_VISITED} = this.states;
+
+    this.ctx.strokeStyle = 'rgb(0, 0, 0)';
+    this.ctx.lineWidth = 3;
 
     for (let y = 0; y < this.gridY; y++) {
 
@@ -78,9 +87,9 @@ class Maze {
           this.ctx.lineTo(x * this.nodeX, (y + 1) * this.nodeY);
         }
         this.ctx.stroke();
-
       }
     }
+    this.drawBorder();
   }
 
   updateMaze() {
@@ -156,6 +165,9 @@ class Maze {
   }
 
   drawInitialMaze() {
+    this.ctx.strokeStyle = 'rgb(0, 0, 0)';
+    this.ctx.lineWidth = 3;
+
     // Color background
     this.ctx.fillStyle = 'rgb(0, 0, 255)';
     this.ctx.fillRect(0, 0, this.gridX * this.nodeX, this.gridY * this.nodeY);
@@ -172,6 +184,14 @@ class Maze {
       this.ctx.lineTo(x * this.nodeX, this.canvas.height);
     }
     this.ctx.stroke();
+
+    this.drawBorder();
+  }
+
+  drawBorder() {
+    this.ctx.strokeStyle = 'rgb(0, 0, 0)';
+    this.ctx.lineWidth = 6;
+    this.ctx.strokeRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
   createMaze() {
