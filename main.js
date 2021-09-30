@@ -76,8 +76,10 @@ resetMazeBtn.addEventListener('click', (e) => {
   createMazeBtn.disabled = false;
   resetMazeBtn.disabled = true;
   solveMazeBtn.disabled = true;
-  mazeDiv.removeChild(startDiv);
-  mazeDiv.removeChild(endDiv);
+  if (mazeDiv.contains(startDiv) && mazeDiv.contains(endDiv)) {
+    mazeDiv.removeChild(startDiv);
+    mazeDiv.removeChild(endDiv);
+  }
 });
 solveMazeBtn.addEventListener('click', (e) => {
   drawMazeSolution();
