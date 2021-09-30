@@ -17,6 +17,10 @@ const solveMazeBtn = document.getElementById('solve-maze');
 let size = Number(mazeSizeSelector.value);
 let maze = new Maze(canvas, ctx, size, size);
 
+// Resize maze div
+mazeDiv.style.width = maze.canvas.width + 'px';
+mazeDiv.style.height = maze.canvas.height + 'px';
+
 // Animation request id to allow pausing maze creation
 let animationId = null;
 
@@ -48,11 +52,11 @@ createMazeBtn.addEventListener('click', (e) => {
     solveMazeBtn.disabled = false;
     startPoint = new DraggableDiv(startDiv, 0, 0, 'rgba(255, 0, 0, 0.5', maze);
     endPoint = new DraggableDiv(endDiv,
-                              (maze.gridX - 1),
-                              (maze.gridY - 1),
-                              'rgba(0, 255, 0, 0.5)', maze);
-    mazeDiv.append(startDiv);
-    mazeDiv.append(endDiv);
+                                (maze.gridX - 1),
+                                (maze.gridY - 1),
+                                'rgba(0, 255, 0, 0.5)', maze);
+    mazeDiv.appendChild(startDiv);
+    mazeDiv.appendChild(endDiv);
   }
 });
 playPauseMazeBtn.addEventListener('click', (e) => {
@@ -95,8 +99,8 @@ function animateMazeCreation() {
                                 (maze.gridX - 1),
                                 (maze.gridY - 1),
                                 'rgba(0, 255, 0, 0.5)', maze);
-    mazeDiv.append(startDiv);
-    mazeDiv.append(endDiv);
+    mazeDiv.appendChild(startDiv);
+    mazeDiv.appendChild(endDiv);
   }
 }
 
