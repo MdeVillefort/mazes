@@ -50,6 +50,9 @@ class Maze {
     this.ctx.strokeStyle = 'rgb(0, 0, 0)';
     this.ctx.lineWidth = 3;
 
+    // Get stack size
+    let N = this.stack.length;
+
     for (let y = 0; y < this.gridY; y++) {
 
       for (let x = 0; x < this.gridX; x++) {
@@ -59,7 +62,7 @@ class Maze {
         if (this.nVisited < this.gridX * this.gridY)
             this.ctx.fillStyle = 'rgb(0, 255, 0)';
 
-        if ((x === this.stack.at(-1)[0] && y === this.stack.at(-1)[1]) && this.nVisited < this.gridX * this.gridY) {
+        if ((x === this.stack[N - 1][0] && y === this.stack[N - 1][1]) && this.nVisited < this.gridX * this.gridY) {
           this.ctx.fillStyle = 'rgb(0, 255, 0)';
         } else if (node & CELL_VISITED) {
           this.ctx.fillStyle = 'rgb(255, 255, 255)';
@@ -101,28 +104,28 @@ class Maze {
 
     // Create set of unvisited neighbors
     let offset = (x, y) => {
-      return (this.stack.at(-1)[1] + y) * this.gridX + (this.stack.at(-1)[0] + x);
+      return (this.stack[this.stack.length - 1][1] + y) * this.gridX + (this.stack[this.stack.length - 1][0] + x);
     };
 
     let neighbors = [];
 
     // North neighbor
-    if (this.stack.at(-1)[1] > 0 && (this.nodes[offset(0, -1)] & CELL_VISITED) === 0) {
+    if (this.stack[this.stack.length - 1][1] > 0 && (this.nodes[offset(0, -1)] & CELL_VISITED) === 0) {
       neighbors.push(0);
     }
 
     // East neighbor
-    if (this.stack.at(-1)[0] < this.gridX - 1 && (this.nodes[offset(1, 0)] & CELL_VISITED) === 0) {
+    if (this.stack[this.stack.length - 1][0] < this.gridX - 1 && (this.nodes[offset(1, 0)] & CELL_VISITED) === 0) {
       neighbors.push(1);
     }
 
     // South neighbor
-    if (this.stack.at(-1)[1] < this.gridY - 1 && (this.nodes[offset(0, 1)] & CELL_VISITED) === 0) {
+    if (this.stack[this.stack.length - 1][1] < this.gridY - 1 && (this.nodes[offset(0, 1)] & CELL_VISITED) === 0) {
       neighbors.push(2);
     }
 
     // West neighbor
-    if (this.stack.at(-1)[0] > 0 && (this.nodes[offset(-1, 0)] & CELL_VISITED) === 0) {
+    if (this.stack[this.stack.length - 1][0] > 0 && (this.nodes[offset(-1, 0)] & CELL_VISITED) === 0) {
       neighbors.push(3);
     }
 
@@ -135,22 +138,22 @@ class Maze {
         case 0: // North
           this.nodes[offset(0, 0)] |= CELL_PATH_N;
           this.nodes[offset(0, -1)] |= CELL_PATH_S;
-          this.stack.push([this.stack.at(-1)[0] + 0, this.stack.at(-1)[1] - 1]);
+          this.stack.push([this.stack[this.stack.length - 1][0] + 0, this.stack[this.stack.length - 1][1] - 1]);
           break
         case 1: // East
           this.nodes[offset(0, 0)] |= CELL_PATH_E;
           this.nodes[offset(1, 0)] |= CELL_PATH_W;
-          this.stack.push([this.stack.at(-1)[0] + 1, this.stack.at(-1)[1] + 0]);
+          this.stack.push([this.stack[this.stack.length - 1][0] + 1, this.stack[this.stack.length - 1][1] + 0]);
           break;
         case 2: // South
           this.nodes[offset(0, 0)] |= CELL_PATH_S;
           this.nodes[offset(0, 1)] |= CELL_PATH_N;
-          this.stack.push([this.stack.at(-1)[0] + 0, this.stack.at(-1)[1] + 1]);
+          this.stack.push([this.stack[this.stack.length - 1][0] + 0, this.stack[this.stack.length - 1][1] + 1]);
           break;
         case 3: // West
           this.nodes[offset(0, 0)] |= CELL_PATH_W;
           this.nodes[offset(-1, 0)] |= CELL_PATH_E;
-          this.stack.push([this.stack.at(-1)[0] - 1, this.stack.at(-1)[1] + 0]);
+          this.stack.push([this.stack[this.stack.length - 1][0] - 1, this.stack[this.stack.length - 1][1] + 0]);
           break;
       }
 
