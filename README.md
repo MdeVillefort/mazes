@@ -21,7 +21,17 @@ of where we are in the maze.
     * If all neighboring nodes have been visited, pop a value off the stack
 
 ## Path Finding
-TODO
+A path finding algorithm adapted from Chapter 7 of Eloquent Javascript
+by Marijn Haverbeke.  This algorithm does not account for two unconnected
+points.  Every point in these mazes is reachable from every other point.
+
+### Algorithm Steps
+1. Keep a work list of objects that tracks what nodes need to be explored
+and the route taken to reach them.
+2. For each node explored...
+    * Search open paths from this node
+    * If unexplored (not in work list), push that node onto the work list
+3. Return route when end point reached
 
 ## Resources
 https://www.youtube.com/watch?v=Y37-gB83HKE
