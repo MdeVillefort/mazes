@@ -26,7 +26,7 @@ function getNeighbors(at, maze) {
   return neighbors;
 }
 
-function findPath(maze, from = [0, 0], to = [maze.gridX - 1, maze.gridY - 1]) {
+function findPath(maze, from, to) {
 
   let work = [{at : from, route : [from]}];
 

@@ -21,8 +21,10 @@ let maze = new Maze(canvas, ctx, size, size);
 let animationId = null;
 
 // The div elements indicating maze solution endpoints
-let startDiv = null;
-let endDiv = null;
+let startDiv = document.createElement('div');
+let endDiv = document.createElement('div');
+let startPoint = null;
+let endPoint = null;
 
 // Set up event listeners
 mazeSizeSelector.addEventListener('change', (e) => {
@@ -44,14 +46,13 @@ createMazeBtn.addEventListener('click', (e) => {
     playPauseMazeBtn.disabled = true;
     resetMazeBtn.disabled = false;
     solveMazeBtn.disabled = false;
-
-    startDiv = new DraggableDiv(document.createElement('div'), 0, 0, 'rgba(255, 0, 0, 0.5', maze);
-    endDiv = new DraggableDiv(document.createElement('div'),
+    startPoint = new DraggableDiv(startDiv, 0, 0, 'rgba(255, 0, 0, 0.5', maze);
+    endPoint = new DraggableDiv(endDiv,
                               (maze.gridX - 1),
                               (maze.gridY - 1),
                               'rgba(0, 255, 0, 0.5)', maze);
-    mazeDiv.append(startDiv.element);
-    mazeDiv.append(endDiv.element);
+    mazeDiv.append(startDiv);
+    mazeDiv.append(endDiv);
   }
 });
 playPauseMazeBtn.addEventListener('click', (e) => {
@@ -71,6 +72,8 @@ resetMazeBtn.addEventListener('click', (e) => {
   createMazeBtn.disabled = false;
   resetMazeBtn.disabled = true;
   solveMazeBtn.disabled = true;
+  mazeDiv.removeChild(startDiv);
+  mazeDiv.removeChild(endDiv);
 });
 solveMazeBtn.addEventListener('click', (e) => {
   drawMazeSolution();
@@ -87,16 +90,24 @@ function animateMazeCreation() {
     resetMazeBtn.disabled = false;
     solveMazeBtn.disabled = false;
     animationId = null;
+    startPoint = new DraggableDiv(startDiv, 0, 0, 'rgba(255, 0, 0, 0.5', maze);
+    endPoint = new DraggableDiv(endDiv,
+                                (maze.gridX - 1),
+                                (maze.gridY - 1),
+                                'rgba(0, 255, 0, 0.5)', maze);
+    mazeDiv.append(startDiv);
+    mazeDiv.append(endDiv);
   }
 }
 
 function drawMazeSolution() {
+  maze.drawMaze();
   ctx.strokeStyle = 'rgb(255, 0, 0)';
   ctx.beginPath();
-  ctx.moveTo(0.5 * maze.nodeX, 0.5 * maze.nodeY);
+  ctx.moveTo((startPoint.col + 0.5) * maze.nodeX, (startPoint.row + 0.5) * maze.nodeY);
   ctx.lineWidth = 1;
 
-  let path = findPath(maze, [startDiv.col, startDiv.row], [endDiv.col, endDiv.row]);
+  let path = findPath(maze, [startPoint.col, startPoint.row], [endPoint.col, endPoint.row]);
   for (let i = 0; i < path.length - 1; i++) {
     let [x1, y1] = path[i];
     let [x2, y2] = path[i + 1];
