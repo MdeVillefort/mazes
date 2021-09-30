@@ -33,6 +33,14 @@ and the route taken to reach them.
     * If unexplored (not in work list), push that node onto the work list
 3. Return route when end point reached
 
+## TODO
+1. Fix use of Array.prototype.at method.  This was introduced recently in
+Firefox in version 90.0.  Probably best to use an older, more prevalent method.
+2. Make UI pretty.
+3. Implement additional maze generation and maze solution algorithms.  Make them
+selectable in the UI.
+4. Make it possible to animate the maze solution as the user drags around endpoints.
+
 ## Resources
 https://www.youtube.com/watch?v=Y37-gB83HKE
 
