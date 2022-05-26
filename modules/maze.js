@@ -22,6 +22,11 @@ class Maze {
       'CELL_VISITED' : 0x10   // 10000
     };
     Object.freeze(this.states);
+    this.colors = {
+      "CURRENT_NODE" : "rgb(0, 255, 0)",
+      "UNVISITIED_NODE" : "rgb(147, 112, 219)",
+      "VISITED_NODE" : "rgb(255, 255, 255)",
+    };
 
     this.initMaze();
   }
@@ -60,14 +65,14 @@ class Maze {
         let node = this.nodes[y * this.gridX + x];
 
         if (this.nVisited < this.gridX * this.gridY)
-            this.ctx.fillStyle = 'rgb(0, 255, 0)';
+            this.ctx.fillStyle = this.colors["CURRENT_NODE"];
 
         if ((x === this.stack[N - 1][0] && y === this.stack[N - 1][1]) && this.nVisited < this.gridX * this.gridY) {
-          this.ctx.fillStyle = 'rgb(0, 255, 0)';
+          this.ctx.fillStyle = this.colors["CURRENT_NODE"];
         } else if (node & CELL_VISITED) {
-          this.ctx.fillStyle = 'rgb(255, 255, 255)';
+          this.ctx.fillStyle = this.colors["VISITED_NODE"];
         } else {
-          this.ctx.fillStyle = 'rgb(0, 0, 255)';
+          this.ctx.fillStyle = this.colors["UNVISITIED_NODE"];
         }
         this.ctx.fillRect(x * this.nodeX, y * this.nodeY, this.nodeX, this.nodeY);
         this.ctx.fill();
@@ -172,7 +177,7 @@ class Maze {
     this.ctx.lineWidth = 3;
 
     // Color background
-    this.ctx.fillStyle = 'rgb(0, 0, 255)';
+    this.ctx.fillStyle = this.colors["UNVISITIED_NODE"];
     this.ctx.fillRect(0, 0, this.gridX * this.nodeX, this.gridY * this.nodeY);
     this.ctx.fill();
     

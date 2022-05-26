@@ -9,30 +9,24 @@
     <div class="maze center">
       <canvas id="canvas" width="800" height="800"></canvas>
     </div>
-    <br>
     <div class="ui center">
-      <h4>Maze Generation & Path Finding</h4>
-      <p><u>Generate Maze:</u></p>
-      <label for="maze-size">Maze Size:</label>
-      <select id="maze-size">
-        <option value="10">10 x 10</option>
-        <option value="20" selected>20 x 20</option>
-        <option value="40">40 x 40</option>
-      </select>
-      <label for="animate-maze">Animate?</label>
-      <input type="checkbox" id="animate-maze" checked />
-      <br>
-      <button id="create-maze">Create</button>
-      <button id="play-pause-maze" disabled>&#x23EF</button>
-      <button id="reset-maze" disabled>Reset</button>
-      <p><u>Solve Maze:</u></p>
-      <label for="path-finder">Path Finder:</label>
-      <select id="path-finder">
-        <option value="auto">auto</option>
-        <option value="manual">manual</option>
-      </select>
-      <br>
-      <button id="solve-maze" disabled>Solve</button>
+      <h1>Generate and Solve a Maze</h1>
+      <div class="spread">
+        <label for="maze-size">Maze Size:</label>
+        <select id="maze-size">
+          <option value="10">10 x 10</option>
+          <option value="20" selected>20 x 20</option>
+          <option value="40">40 x 40</option>
+        </select>
+        <label for="animate-maze">Animate?</label>
+        <input type="checkbox" id="animate-maze" checked />
+      </div>
+      <div class="spread">
+        <button id="create-maze" class="btn btn-primary">Create</button>
+        <button id="play-pause-maze" class="btn btn-accent" disabled>Play/Pause</button>
+        <button id="reset-maze" class="btn btn-danger" disabled>Reset</button>
+        <button id="solve-maze" class="btn btn-primary" disabled>Solve</button>
+      </div>
     </div>
     <script src="main.js" type="module"></script>
   </body>
